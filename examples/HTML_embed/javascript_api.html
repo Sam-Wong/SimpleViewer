@@ -1,0 +1,152 @@
+<!-- saved from url=(0014)about:internet -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<head>
+		<title>SimpleViewer JavaScript API Example</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+		
+		<style type="text/css" media="screen">				
+			html, body	{ height:100%; }
+			body {							
+				background-color: #FFF;
+				color:#181818;
+				font-family:sans-serif;
+				font-size:20px;		
+			}
+			
+			#divAPIOutput {			
+				
+				background-color: #DDD;
+				color:#181818;				
+				height:80px;
+				width:700px;
+				padding:10px;
+				font-size:14px;	
+			}
+			
+		</style>
+		
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js"></script>
+		
+		<script type="text/javascript">
+		
+	 		//SIMPLEVIEWER JAVASCRIPT API EXAMPLE CODE
+			//For API documentation visit: www.airtightinteractive.com/simpleviewer-pro/support/api.html
+			//This example shows using the API to control and receive events form the gallery SWF.
+			
+			//SimpleViewer API setup
+			var svAPI; //svAPI is the object to call API methods on
+			var apiOutput; //output text area
+		
+			//Called by SWF when API becomes available
+			function svComplete() {
+				//alert("SimpleViewer API Available");
+				svAPI = document.getElementById('svInstance');		
+				apiOutput = document.getElementById('divAPIOutput');		
+			};						
+			
+			//Called by SWF when user views an image
+			//This is a good place to add per-image tracking calls 
+			//or other per-image actions like switching out a banner ad
+			function svImageChange(index){
+				//alert("Image Viewed: " + index);
+				displayOutput("Got Image Change Event: " + index);
+			}
+
+			//Called by SWF when  user navigates to a new thumb page
+			function svPageChange(index){
+				displayOutput("Got Thumb Page Change Event: " + index);
+			}
+			
+			//functions called by API control buttons
+			function showNextImage(){			
+				svAPI.showNextImage();
+			}
+			
+			function showPreviousImage(){
+				svAPI.showPreviousImage();
+			}
+			
+			function getImageIndex(){
+				displayOutput(svAPI.getImageIndex());
+			}
+			
+			function getImageInfo(){
+				var imageInfo = svAPI.getImageInfo(svAPI.getImageIndex());
+				displayOutput("imageURL: "  + imageInfo.imageURL +
+		 		"<br>thumbURL: "  + imageInfo.thumbURL +
+		  		"<br>caption: "  + imageInfo.caption +
+		  		"<br>linkURL: "  + imageInfo.linkURL +
+		  		"<br>linkTarget: "  + imageInfo.linkTarget);		  
+			}
+			
+			function getGalleryInfo(){
+				var info = svAPI.getGalleryInfo();
+				displayOutput("imageCount: "  + info.imageCount +
+		 		"<br>thumbPageCount: "  + info.thumbPageCount +
+				"<br>thumbPageSize: "  + info.thumbPageSize);		  
+			}
+			
+			function toggleAutoPlay(){
+				svAPI.toggleAutoPlay();
+			}
+			
+			function showThumbPage(){
+				svAPI.showThumbPage(1);
+			}
+			
+			function showImage(){
+				svAPI.showImage(5);
+			}
+			
+			function getThumbPageIndex(){
+				displayOutput(svAPI.getThumbPageIndex());
+			}
+			
+			function displayOutput(str){
+				//alert(str);
+				apiOutput.innerHTML = str;
+			}
+					
+			//SimpleViewer Embed
+			var flashvars = {};
+			flashvars.galleryURL = "gallery.xml";
+			flashvars.enableAPI = "true";
+			
+			var params = {};			
+			params.allowfullscreen = true;
+			params.allowscriptaccess = "always";
+			params.bgcolor = "222222";
+			
+			var attributes = {};
+			//name and id should match getElementById() call above
+			attributes.id =  "svInstance"; 
+			attributes.name = "svInstance";
+			
+			swfobject.embedSWF("simpleviewer.swf", "flashContent", "800", "700", "9.0.124", false, flashvars, params,attributes);
+			
+		</script>
+		
+	</head><body>
+		<div id="form"> 
+        <form>
+		  <p>
+            API Controls<br />
+	      	<input name="b1" type="button" value="Show Next Image" onclick="showNextImage()"/>
+	        <input name="b2" type="button" value="Show Previous Image" onclick="showPreviousImage()"/>
+	        <input name="b3" type="button" value="Show Image 5" onclick="showImage()"/>
+	        <input name="b4" type="button" value="Show Thumb Page 1" onclick="showThumbPage()"/>
+	        <input name="b5" type="button" value="Toggle AutoPlay" onclick="toggleAutoPlay()"/>
+		  </p>
+	      <p>
+	        <input name="b6" type="button" value="Get Current Image Index" onclick="getImageIndex()"/>
+	        <input name="b7" type="button" value="Get Current Image Info" onclick="getImageInfo()"/>
+	        <input name="b8" type="button" value="Get Gallery Info" onclick="getGalleryInfo()"/>
+	        <input name="b9" type="button" value="Get Thumb Page Index" onclick="getThumbPageIndex()"/>
+	      </p>	     
+        </form>
+    API Output<br />
+    <div id="divAPIOutput"></div>
+     
+<div id="flashContent">SimpleViewer requires JavaScript and the Flash Player. <a href="http://get.adobe.com/flashplayer/">Get Flash</a></div></body>
+</html>

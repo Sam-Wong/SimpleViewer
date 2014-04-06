@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" width="100%" height="100%"  frameRate="30" applicationComplete ="init()">
+	
+	<mx:Script>
+		<![CDATA[
+			import mx.events.ResizeEvent;
+			
+			/**
+			 * SIMPLEVIEWER FLEX EMBED / ACTIONSCRIPT API EXAMPLE CODE
+			 * 
+			 * For API documentation visit: www.airtightinteractive.com/simpleviewer-pro/support/api.html
+			 *
+			 * This example shows switching between 2 galleries with different gallery xml files, 
+			 * and using the API to control and receive events from the gallery.
+			 *
+			 **/
+			
+			private var _svAPI:Object; //_svAPI is the object to call API methods on
+			private var _swfLoaded:Boolean = false;
+			private var _galleryURL:String;
+			private var _swfLoader:Loader;
+			private var _galleryShowing:Boolean = true;
+			
+			private function init():void {
+				_swfLoader = new Loader();
+				canvasSWF.rawChildren.addChild(_swfLoader);
+				loadGallery("gallery1.xml");
+				
+			}
+			
+			/**
+			 * Load SimpleViewer SWF
+			 */ 
+			private function loadGallery(galleryURL:String):void{
+				_galleryURL = galleryURL;
+				
+				//unload previous simpleviewer instance
+				if (_svAPI != null ) _svAPI.dispose();
+				_svAPI = null;
+				if (_swfLoaded) _swfLoader.unload();
+				
+				//load simpleviewer swf
+				var urlReq:URLRequest = new URLRequest("assets/simpleviewer.swf");
+				_swfLoader.contentLoaderInfo.addEventListener(Event.INIT, onViewerInit);
+				_swfLoader.load(urlReq);
+				_swfLoaded = true;
+			}
+			
+			/**
+			 * Fired when preloader is available
+			 * Can set flashvars at this point
+			 */ 
+			private function onViewerInit(e:Event):void{
+				trace("onViewerInit");
+				
+				//listen for svComplete event
+				Object(_swfLoader.content).addEventListener("svComplete", onGalleryLoaded); 
+				
+				trace("setViewerFlashVars");
+				var options:Object = Object(_swfLoader.content).embedOptions;
+				options.galleryURL = _galleryURL;
+				options.baseURL = "assets";
+			}
+			
+			/**
+			 * Fired when gallery has completly loaded (SWF +  XML)
+			 * API is now available.
+			 */ 
+			private function onGalleryLoaded(e:Event):void{
+				
+				_svAPI = Object(_swfLoader.content).api;
+				taOutput.text = "Gallery Loaded. API now available.";
+				
+				//Init Event Listeners
+				_svAPI.addEventListener("svImageChange",onImageChange);
+				_svAPI.addEventListener("svPageChange",onThumbPageChange);
+			}
+			
+			/**
+			 * Called when user views an image
+			 */
+			private function onImageChange(e:Object):void{
+				taOutput.text = "Got Image Change Event: " + e.data;
+			}
+			
+			/**
+			 * Called when user navigates to a new thumb page
+			 */
+			private function onThumbPageChange(e:Object):void{
+				taOutput.text = "Got Thumb Page Change Event: " + e.data;
+			}
+			
+			/**
+			 * Resize Handler
+			 */ 
+			protected function canvasSWF_resizeHandler(event:ResizeEvent):void
+			{			
+				//setSize on SimpleViewer via API
+				if (_svAPI != null) _svAPI.setSize(canvasSWF.width,canvasSWF.height);
+			}
+			
+			//Button Click Handlers
+			private function loadGallery1():void{
+				loadGallery("gallery1.xml");
+			}
+			
+			private function loadGallery2():void{
+				loadGallery("gallery2.xml");
+			}
+			
+			private function showNextImage():void{
+				_svAPI.showNextImage();
+				
+			}
+			
+			private function showPreviousImage():void{
+				_svAPI.showPreviousImage();
+			}
+			
+			private function showImage():void{
+				_svAPI.showImage(5);
+			}
+			
+			private function getImageIndex():void{
+				taOutput.text = "Current Image Index: " + _svAPI.getImageIndex();
+			}
+			
+			private function getImageInfo():void{
+				
+				var imageInfo:Object = _svAPI.getImageInfo(_svAPI.getImageIndex());
+				taOutput.text = "Current Image Info" + 
+					"\nimageURL: "  + imageInfo.imageURL +
+					"\nthumbURL: "  + imageInfo.thumbURL +
+					"\ncaption: "  + imageInfo.caption +
+					"\nlinkURL: "  + imageInfo.linkURL +
+					"\nlinkTarget: "  + imageInfo.linkTarget;
+			}
+			
+			private function getGalleryInfo():void{
+				
+				var galleryInfo:Object = _svAPI.getGalleryInfo();
+				taOutput.text = "Current Gallery Info" + 
+					"\nimageCount: "  + galleryInfo.imageCount +
+					"\nthumbPageCount: "  + galleryInfo.thumbPageCount +
+					"\nthumbPageSize: "  + galleryInfo.thumbPageSize;
+			}
+			
+			private function toggleAutoPlay():void{
+				_svAPI.toggleAutoPlay();
+			}
+			
+			private function toggleAudio():void{
+				_svAPI.toggleAudio();
+			}
+			
+			private function toggleFullscreen():void{
+				_svAPI.toggleFullscreen();
+			}
+			
+			private function downloadImage():void{
+				//Note image downloading only works when SWF is running from a web server
+				_svAPI.downloadImage();
+			}
+			
+			private function openImageLinkURL():void{
+				_svAPI.openImageLinkURL();
+			}
+			
+			private function show():void{
+				_galleryShowing = !_galleryShowing;
+				_svAPI.show(_galleryShowing);
+			}
+			
+			private function showThumbPage():void{
+				_svAPI.showThumbPage(1);
+			}
+			
+			private function getThumbPageIndex():void{
+				taOutput.text = "Current Thumb Page Index: " + _svAPI.getThumbPageIndex();
+			}
+
+	
+		]]>
+	</mx:Script>
+	
+	<mx:Label x="10" y="10" text="SimpleViewer Flex Embed API Example" fontSize="20"/>
+	
+	<mx:VBox x="10" y="50" width="182" height="100%">
+		<mx:Button label="Load Gallery 1" click="loadGallery1()"/>
+		<mx:Button label="Load Gallery 2" click="loadGallery2()"/>
+		<mx:Button label="Show Next Image" click="showNextImage()"/>
+		<mx:Button label="Show Previous Image" click="showPreviousImage()"/>
+		<mx:Button label="Show Image 5" click="showImage()"/>
+		<mx:Button label="Get Current Image Index" click="getImageIndex()"/>
+		<mx:Button label="Get Current Image Info" click="getImageInfo()"/>
+		<mx:Button label="Get Gallery Info" click="getGalleryInfo()"/>
+		<mx:Button label="Toggle AutoPlay" click="toggleAutoPlay()"/>
+		<mx:Button label="Toggle Fullscreen" click="toggleFullscreen()"/>
+		<mx:Button label="Download Image" click="downloadImage()"/>
+		<mx:Button label="Open Image Link" click="openImageLinkURL()"/>
+		<mx:Button label="Toggle Visibility" click="show()"/>
+		<mx:Button label="Show Thumb Page 1" click="showThumbPage()"/>
+		<mx:Button label="Get Thumb Page Index" click="getThumbPageIndex()"/>
+		<mx:TextArea height="180" id="taOutput" text="API OUTPUT"/>
+	</mx:VBox>
+	
+	<mx:Canvas width="100%" height="100%" x="200" y="50" id="canvasSWF" backgroundColor="#7D7C7C" resize="canvasSWF_resizeHandler(event)"/>
+	
+	
+</mx:Application>

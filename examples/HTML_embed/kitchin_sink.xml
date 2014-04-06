@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- OPTIONS SUPPORTED BY STANDARD SWF -->
+<simpleviewergallery
+	
+	title="Kitchin Sink Example"
+	titleFontName="Times"
+	titleFontSize="50"
+	titlePosition="TOP"
+	titleBackOpacity="0.5"
+	titleBackColor="990000"
+	showDownloadButton="true"
+	showNavButtons="true"
+	showAutoPlayButton="true"
+	showAudioButton="true"
+	buttonBarScale="1.5"
+	buttonBarBackColor="009966"
+	buttonBarColor="FFFF00"
+	buttonBarHoverColor="FF0000"
+	titleFontColor="99FF33"
+	titleDropShadow="true"
+	frameColor="FFFF00"
+	imageFrameStyle="ROUNDED"
+	imageCornerRadius="20"
+	imageTransitionType="FLASH"
+	imageBackOpacity="0.5"
+	showOverlay="ALWAYS"
+	showImageNav="ALWAYS"
+	imageNavStyle="BIG"
+	imageNavScale="1.5"
+	thumbWidth="50"
+	thumbHeight="50"
+	thumbPadding="4"
+	thumbFrameHoverColor="FF0000"
+	thumbRows="6"
+	thumbNavColor="0099FF"
+	thumbNavHoverColor="CC9966"
+	thumbNavStyle="TRIANGLE"
+	showBackButton="true"
+	backButtonFontSize="24"
+	backButtonFontColor="00FF99"
+	backButtonBackColor="000099"
+	backButtonURL="http://www.simpleviewer.net"
+	captionPosition="BOTTOM"
+	captionFontSize="16"
+	imageNumberFontSize="14"
+	captionBackOpacity="0.5"
+	captionDropShadow="true"
+	lockBottomStack="true"
+	embedColor="330000"
+	embedWidth="90%"
+	embedHeight="90%"
+	captionFontColor="CCFF33"
+	thumbFrameStyle="ROUNDED"
+	thumbDropShadow="true"
+	showThumbVisited="false"
+	buttonBarBackOpacity="1"
+	backButtonBackOpacity="1"
+	imageScaleMode="SCALE_UP"	
+	waterMarkURL="extras/watermark.png"
+	audioURL="extras/music.mp3"
+	loopAudio="true"
+	playAudioOnLoad="true"
+	
+>
+
+<image imageURL="images/wide.jpg" thumbURL="thumbs/wide.jpg" linkURL="" linkTarget="" >
+	<caption><![CDATA[Welcome to <u><a href="http://www.simpleviewer.net/simpleviewer/pro" target="_blank">SimpleViewer-Pro</a></u>.]]></caption>	
+</image>
+<image imageURL="images/tall.jpg" thumbURL="thumbs/tall.jpg" linkURL="" linkTarget="" >
+	<caption>SimpleViewer-Pro allows you to customize SimpleViewer to your own requirements.</caption>	
+</image>
+<image imageURL="images/wide.jpg" thumbURL="thumbs/wide.jpg" linkURL="" linkTarget="" >
+	<caption>SimpleViewer-Pro has no branding or download link.</caption>	
+</image>
+<image imageURL="images/tall.jpg" thumbURL="thumbs/tall.jpg" linkURL="" linkTarget="" >
+	<caption><![CDATA[No Flash® IDE needed. Customization via XML or by using <u><a href="http://www.simpleviewer.net/simpleviewer/pro/support/svbuilder.html" target="_blank">svBuilder</a></u>.]]></caption>	
+</image>
+<image imageURL="images/wide.jpg" thumbURL="thumbs/wide.jpg" linkURL="" linkTarget="" >
+	<caption><![CDATA[Over 150 Additional <u><a href="http://www.simpleviewer.net/simpleviewer/pro/support/pro_options.html" target="_blank">Pro Customization Options</a></u> available.]]></caption>	
+</image>
+<image imageURL="images/tall.jpg" thumbURL="thumbs/tall.jpg" linkURL="http://www.simpleviewer.net" linkTarget="_blank" >
+	<caption><![CDATA[For SimpleViewer-Pro support and documentation, view the <u><a href="http://www.simpleviewer.net/simpleviewer/pro/support" target="_blank">SimpleViewer-Pro Support Page</a></u>.]]></caption>	
+</image>
+<image imageURL="images/wide.jpg" thumbURL="thumbs/wide.jpg" linkURL="" linkTarget="" >
+	<caption></caption>	
+</image>
+<image imageURL="images/tall.jpg" thumbURL="thumbs/tall.jpg" linkURL="" linkTarget="" >
+	<caption></caption>	
+</image>
+<image imageURL="images/wide.jpg" thumbURL="thumbs/tall.jpg" linkURL="" linkTarget="" >
+	<caption></caption>	
+</image>
+<image imageURL="images/tall.jpg" thumbURL="thumbs/tall.jpg" linkURL="" linkTarget="" >
+	<caption></caption>	
+</image>
+<image imageURL="images/wide.jpg" thumbURL="thumbs/wide.jpg" linkURL="" linkTarget="" >
+	<caption></caption>	
+</image>
+<image imageURL="images/tall.jpg" thumbURL="thumbs/tall.jpg" linkURL="" linkTarget="" >
+	<caption></caption>	
+</image>
+<image imageURL="images/wide.jpg" thumbURL="thumbs/wide.jpg" linkURL="" linkTarget="" >
+	<caption></caption>	
+</image>
+<image imageURL="images/tall.jpg" thumbURL="thumbs/tall.jpg" linkURL="" linkTarget="" >
+	<caption></caption>	
+</image>
+<image imageURL="images/wide.jpg" thumbURL="thumbs/wide.jpg" linkURL="" linkTarget="" >
+	<caption></caption>	
+</image>
+<image imageURL="images/tall.jpg" thumbURL="thumbs/tall.jpg" linkURL="" linkTarget="" >
+	<caption></caption>	
+</image>
+<image imageURL="images/wide.jpg" thumbURL="thumbs/wide.jpg" linkURL="" linkTarget="" >
+	<caption></caption>	
+</image>
+<image imageURL="images/tall.jpg" thumbURL="thumbs/tall.jpg" linkURL="" linkTarget="" >
+	<caption></caption>	
+</image>
+<image imageURL="images/wide.jpg" thumbURL="thumbs/wide.jpg" linkURL="" linkTarget="" >
+	<caption></caption>	
+</image>
+<image imageURL="images/tall.jpg" thumbURL="thumbs/tall.jpg" linkURL="" linkTarget="" >
+	<caption></caption>	
+</image>
+<image imageURL="images/wide.jpg" thumbURL="thumbs/wide.jpg" linkURL="" linkTarget="" >
+	<caption></caption>	
+</image>
+<image imageURL="images/tall.jpg" thumbURL="thumbs/tall.jpg" linkURL="" linkTarget="" >
+	<caption></caption>	
+</image>
+</simpleviewergallery>
